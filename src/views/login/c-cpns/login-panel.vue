@@ -11,7 +11,7 @@
               <span class="text">账号登录</span>
             </div>
           </template>
-          <PaneAccount />
+          <PaneAccount ref="accountRef" />
         </el-tab-pane>
 
         <!-- 手机登录 -->
@@ -43,10 +43,13 @@ import PanePhone from './pane-phone.vue'
 
 const isRemPwd = ref(false)
 const activeName = ref('phone')
+const accountRef = ref<InstanceType<typeof PaneAccount>>()
 
 function handleLoginBtnClick() {
   if (activeName.value === 'account') {
-    console.log('account')
+    // 1.获取子组件的实例
+    accountRef.value?.loginAction()
+    // 2.调用方法
   } else {
     console.log('phone')
   }
